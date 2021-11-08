@@ -35,8 +35,16 @@ def signup():
 
 @app.route('/login')
 def login():
-    
-    return render_template('login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = Users.query.filter_by(username=form.username.data).first()
+        if user:
+            if check_password_hash(user.password, form.password.data):
+                login_user(user)
+                return redirect(url_for('dashboard'))
+            
+            return redirect('failure')
+    return render_template('login.html', form=form)
 
 @app.route('/success')
 def success():
@@ -48,10 +56,20 @@ def failure():
     
     return render_template('failure.html')
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
+    pitch = Pitch.query.all()
     
-    return render_template('dashboard.html')
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comment(owner_id=current_user.id, content=form.content.data)
+        # form.content.data = ''
+       
+        
+        db.session.add(comment)
+        db.session.commit()
+    return render_template('dashboard.html', name=current_user.username, pitch=pitch, form=form, content=form.content.data)
 
 @app.route('/pitch')
 def pitch():
