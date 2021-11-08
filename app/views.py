@@ -71,10 +71,20 @@ def dashboard():
         db.session.commit()
     return render_template('dashboard.html', name=current_user.username, pitch=pitch, form=form, content=form.content.data)
 
-@app.route('/pitch')
+@app.route('/pitch', methods=['GET', 'POST'])
+@login_required
 def pitch():
+    form = PitchForm()
     
-    return render_template('pitch.html')
+    if form.validate_on_submit():
+        pitch = Pitch(owner_id=current_user.id, title=form.title.data, category=form.category.data, description=form.description.data)
+        form.title.data = ''
+        form.category.data = ''
+        form.description.data = ''
+        
+        db.session.add(pitch)
+        db.session.commit()
+    return render_template('pitch.html', form=form)
 
 @app.route('/profile')
 def profile():
