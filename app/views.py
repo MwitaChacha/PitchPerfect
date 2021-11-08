@@ -93,3 +93,9 @@ def profile():
     pitch = Pitch.query.filter_by(id=current_user.id).all()
     
     return render_template('profile.html', name=current_user.username, email=current_user.email, password=current_user.password, pitch=pitch)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
