@@ -42,9 +42,11 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 login_user(user)
                 return redirect(url_for('dashboard'))
-            
-            return redirect('failure')
-    return render_template('login.html', form=form)
+         
+        return redirect('failure')
+    
+  
+    return render_template('login.html', form=form )
 
 @app.route('/success')
 def success():
