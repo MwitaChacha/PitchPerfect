@@ -8,8 +8,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__,instance_relative_config = True)
 app.config['SECRET_KEY'] = 'thisismysecret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:6775@localhost:5432/trial'
-app.config['DATABASE_URL'] = 'postgresql+psycopg2://postgres:6775@localhost:5432/trial'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:6775@localhost:5433/trial'
+app.config['DATABASE_URL'] = 'postgresql+psycopg2://postgres:6775@localhost:5433/trial'
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 # migrate = Migrate(app, db)
