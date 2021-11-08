@@ -1,16 +1,11 @@
 {% extends "bootstrap/base.html" %}
-
 {% block styles %}
-
 {{super()}}
-
 <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 <link
     href="https://fonts.googleapis.com/css2?family=Lora&family=Nunito:wght@200&family=Quicksand&family=Roboto&family=Roboto+Slab:wght@300;400&family=Zen+Antique&display=swap"
     rel="stylesheet">
-
 {% endblock %}
-
 {% block content%}
 
 <div class="container-fluid">
@@ -19,8 +14,8 @@
         <h1 class="display-4 intro">PITCH PERFECT</h1>
         <p class='wrd'>Make your sixty seconds count</p>
 
-        <a href=""><button class="btn btn-light">Sign-up</button></a>
-        <a href=""><button type="button" class="btn btn-dark">Login</button></a>
+        <a href="{{ url_for('signup') }}"><button class="btn btn-light">Sign-up</button></a>
+        <a href="{{ url_for('login') }}"><button type="button" class="btn btn-dark">Login</button></a>
     </div>
 </div>
 
