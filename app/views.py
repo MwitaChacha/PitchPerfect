@@ -87,6 +87,9 @@ def pitch():
     return render_template('pitch.html', form=form)
 
 @app.route('/profile')
+@login_required
 def profile():
     
-    return render_template('profile.html')
+    pitch = Pitch.query.filter_by(id=current_user.id).all()
+    
+    return render_template('profile.html', name=current_user.username, email=current_user.email, password=current_user.password, pitch=pitch)
