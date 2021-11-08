@@ -66,7 +66,7 @@ def dashboard():
     form = CommentForm()
     if form.validate_on_submit():
         comment = Comment(owner_id=current_user.id, content=form.content.data)
-        # form.content.data = ''
+        form.content.data = ''
        
         
         db.session.add(comment)

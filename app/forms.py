@@ -19,7 +19,7 @@ class RegisterForm(FlaskForm):
 class PitchForm(FlaskForm):
     
     title = StringField('Title of pitch',validators=[InputRequired()])
-    category = StringField('Category',validators=[InputRequired()])
+    category = StringField('Category: Innovation, Business or Pickup Line',validators=[InputRequired()])
     description = StringField('Pitch',validators=[InputRequired()], widget=TextArea())
     
 class CommentForm(FlaskForm):
