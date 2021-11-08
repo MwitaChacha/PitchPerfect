@@ -14,7 +14,7 @@ A new user chooses to sign-up and is redirected to the sign-up page. Details suc
 
 ## Login
 
-After successfully signing up or an attempt by an old user to login, they first need to input their username and password. 
+After successfully signing up or an attempt by an old user to login, they first need to input their username and password.
 
 ![Login](app\static\specs\loginpage.jpg)
 
